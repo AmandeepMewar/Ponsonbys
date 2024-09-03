@@ -130,3 +130,44 @@ export async function logout(req, res) {
     res.status(500).json({ status: 'error', message: error.message });
   }
 }
+
+export async function refreshTokens(req, res) {
+  try {
+    const refreshToken = req.cookies.refreshToken;
+
+    if (!refreshToken) {
+      return res
+        .status(401)
+        .json({ status: 'fail', message: 'NO refresh Token provided' });
+    }
+
+    const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+    const storedRefreshToken = await redis.get(
+      `refresh_token:${decoded.userId}`
+    );
+
+    if (storedRefreshToken !== refreshToken) {
+      return res
+        .status(401)
+        .json({ status: 'fail', message: 'Invalid refresh token' });
+    }
+
+    const accessToken = jwt.sign(
+      { userId: decoded.userId },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN }
+    );
+    res.cookie('accessToken', accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 15 * 60 * 1000,
+    });
+
+    res
+      .status(200)
+      .json({ status: 'success', message: 'Token refreshed Successfully' });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+}
