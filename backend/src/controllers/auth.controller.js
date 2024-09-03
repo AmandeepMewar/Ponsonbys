@@ -17,7 +17,7 @@ function generateTokens(userId) {
 async function storeRefreshToken(userId, refreshToken) {
   const refreshTokenExpiresIn = parseInt(process.env.REFRESH_TOKEN_EXPIRES_IN);
   await redis.set(
-    `refresh_token: ${userId}`,
+    `refresh_token:${userId}`,
     refreshToken,
     'EX',
     refreshTokenExpiresIn * 24 * 60 * 60
@@ -82,5 +82,22 @@ export async function login(req, res) {
 }
 
 export async function logout(req, res) {
-  res.send('Sign up route called!');
+  try {
+    const refreshToken = req.cookies.refreshToken;
+    if (refreshToken) {
+      const decoded = jwt.verify(
+        refreshToken,
+        process.env.REFRESH_TOKEN_SECRET
+      );
+      await redis.del(`refresh_token:${decoded.userId}`);
+    }
+
+    res.clearCookie('accessToken');
+    res.clearCookie('refreshToken');
+    res
+      .status(200)
+      .json({ status: 'success', message: 'Logged out successfully' });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
 }
