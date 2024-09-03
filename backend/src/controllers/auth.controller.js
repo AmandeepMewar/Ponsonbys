@@ -78,7 +78,36 @@ export async function signup(req, res) {
 }
 
 export async function login(req, res) {
-  res.send('Sign up route called!');
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+
+    if (user && (await user.checkPassword(password))) {
+      const { accessToken, refreshToken } = generateTokens(user._id);
+
+      await storeRefreshToken(user._id, refreshToken);
+      setCookies(res, accessToken, refreshToken);
+
+      res.status(200).json({
+        status: 'success',
+        result: {
+          user: {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+          },
+        },
+        message: 'Logged In Successfully',
+      });
+    } else {
+      res
+        .status(401)
+        .json({ status: 'fail', message: 'Invalid email or password' });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
 }
 
 export async function logout(req, res) {
