@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon --env-file=config.env index.js",
     "start": "node --env-file=config.env index.js",
-    "test": "mocha --require ./test/setupTest.js",
+    "test": "mocha --require ./test/setupTest.js --exit",
+    "test:watch": "mocha --require ./test/setupTest.js",
     "lint": "eslint ."
   },
   "author": "",
