@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --env-file=config.env index.js",
     "start": "node --env-file=config.env index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --require ./test/setupTest.js",
     "lint": "eslint ."
   },
   "author": "",
@@ -14,13 +14,18 @@
   "description": "",
   "devDependencies": {
     "@eslint/js": "^9.9.1",
+    "chai": "^5.1.1",
     "eslint": "^9.9.1",
     "globals": "^15.9.0",
-    "nodemon": "^3.1.4"
+    "mocha": "^10.7.3",
+    "nodemon": "^3.1.4",
+    "sinon": "^18.0.0",
+    "supertest": "^7.0.0"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "ioredis": "^5.4.1",
     "jsonwebtoken": "^9.0.2",
