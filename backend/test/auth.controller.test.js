@@ -94,4 +94,49 @@ describe('Auth Controller', function () {
       expect(res.body.message).to.include('Password is required');
     });
   });
+
+  describe('POST /login', function () {
+    it('Should login an existing user and set tokens in cookies', async function () {
+      const existingUser = {
+        _id: 111,
+        name: 'test',
+        email: 'test@gmail.com',
+        password: 'test1234',
+        role: 'customer',
+        cartItems: [],
+        checkPassword: sandbox.stub().resolves(true),
+      };
+
+      sandbox.stub(User, 'findOne').resolves(existingUser);
+
+      sandbox.stub(jwt, 'sign').callsFake((payload, secret) => {
+        if (secret === process.env.ACCESS_TOKEN_SECRET)
+          return 'testAccessToken';
+        else if (secret === process.env.REFRESH_TOKEN_SECRET)
+          return 'testRefreshToken';
+      });
+
+      const redisSetStub = sandbox.stub(redis, 'set').resolves();
+
+      const res = await request(app)
+        .post('/api/auth/login')
+        .send({ email: 'test@gmail.com', password: 'test1234' });
+
+      expect(res.status).to.equal(200);
+      expect(res.body.result.user.email).to.equal('test@gmail.com');
+      expect(redisSetStub.calledOnce).to.be.true;
+      expect(res.headers['set-cookie']).to.exist;
+    });
+
+    it('Should return 401 for invalid credentials', async function () {
+      sandbox.stub(User, 'findOne').resolves(null);
+
+      const res = await request(app)
+        .post('/api/auth/login')
+        .send({ email: 'test@gmail.com', password: 'test1234' });
+
+      expect(res.status).to.equal(401);
+      expect(res.body.message).to.equal('Invalid email or password');
+    });
+  });
 });
