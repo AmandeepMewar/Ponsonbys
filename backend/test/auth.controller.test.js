@@ -139,4 +139,19 @@ describe('Auth Controller', function () {
       expect(res.body.message).to.equal('Invalid email or password');
     });
   });
+
+  describe('POST /logout', function () {
+    it('Should logout user and clear tokens from cookies and redis ', async function () {
+      sandbox.stub(jwt, 'verify').returns({ userId: 111 });
+      const redisDelStub = sandbox.stub(redis, 'del').resolves();
+
+      const res = await request(app)
+        .post('/api/auth/logout')
+        .set('Cookie', 'refreshToken=testRefreshToken');
+
+      expect(res.status).to.equal(200);
+      expect(res.body.message).to.equal('Logged out successfully');
+      expect(redisDelStub.calledOnce).to.be.true;
+    });
+  });
 });
