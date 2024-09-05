@@ -1,5 +1,8 @@
 import Product from '../models/product.model.js';
-import { uploadOnCloudinary } from '../utils/cloudinary.js';
+import {
+  uploadOnCloudinary,
+  deleteFromCloudinary,
+} from '../utils/cloudinary.js';
 
 export async function getAllProducts(req, res) {
   try {
@@ -29,6 +32,32 @@ export async function createProduct(req, res) {
     });
 
     res.status(201).json({ status: 'success', result: product });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+}
+
+export async function deleteProduct(req, res) {
+  try {
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res
+        .status(401)
+        .json({ status: 'fail', message: 'Product not found' });
+    }
+
+    if (product.image) {
+      const publicId = product.image.split('/').pop().split('.')[0];
+      console.log(publicId);
+      await deleteFromCloudinary(publicId);
+    }
+
+    await Product.findByIdAndDelete(req.params.id);
+
+    res
+      .status(203)
+      .json({ status: 'success', message: 'Product deleted successfully' });
   } catch (error) {
     res.status(500).json({ status: 'error', message: error.message });
   }
