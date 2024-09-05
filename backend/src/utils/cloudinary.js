@@ -27,3 +27,12 @@ export async function uploadOnCloudinary(localFilePath) {
     return null;
   }
 }
+
+export async function deleteFromCloudinary(publicId) {
+  try {
+    await cloudinary.uploader.destroy(`ecommerce_products/${publicId}`);
+    console.log('deleted image from cloudinary');
+  } catch (error) {
+    console.log(`Cloudinary deleting error: ${error.messsage}`);
+  }
+}
