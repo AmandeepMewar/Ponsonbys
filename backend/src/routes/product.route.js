@@ -7,6 +7,7 @@ import {
   deleteProduct,
   getRecommendedProducts,
   getProductsByCategory,
+  toggleFeaturedProduct,
 } from '../controllers/product.controller.js';
 import { UploadImage } from '../middlewares/multer.middleware.js';
 
@@ -17,6 +18,13 @@ router.get('/featured', getFeaturedProducts);
 router.get('/category/:category', getProductsByCategory);
 router.get('/recommendations', getRecommendedProducts);
 router.post('/', protectRoute, adminRoute, UploadImage, createProduct);
+router.patch(
+  '/:id',
+  protectRoute,
+  adminRoute,
+  UploadImage,
+  toggleFeaturedProduct
+);
 router.delete('/:id', protectRoute, adminRoute, deleteProduct);
 
 export default router;
