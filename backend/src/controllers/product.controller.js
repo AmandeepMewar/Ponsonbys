@@ -109,3 +109,14 @@ export async function getRecommendedProducts(req, res) {
     res.status(500).json({ status: 'error', message: error.message });
   }
 }
+
+export async function getProductsByCategory(req, res) {
+  const { category } = req.params;
+  try {
+    const products = await Product.find({ category });
+
+    res.status(200).json({ status: 'success', result: products });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+}
