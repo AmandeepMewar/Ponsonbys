@@ -154,4 +154,32 @@ describe('Auth Controller', function () {
       expect(redisDelStub.calledOnce).to.be.true;
     });
   });
+
+  describe('POST /refresh-tokens', function () {
+    it('Should return new access token if refresh token is valid', async function () {
+      sandbox.stub(jwt, 'verify').returns({ userId: 111 });
+      sandbox.stub(redis, 'get').resolves('testRefreshToken');
+
+      sandbox.stub(jwt, 'sign').returns('testAccessToken');
+
+      const res = await request(app)
+        .post('/api/auth/refresh-tokens')
+        .set('Cookie', 'refreshToken=testRefreshToken');
+
+      expect(res.status).to.equal(200);
+      expect(res.body.message).to.equal('Token refreshed Successfully');
+    });
+  });
+
+  it('Should return 401 on invalid refresh token', async function () {
+    sandbox.stub(jwt, 'verify').returns({ userId: 111 });
+    sandbox.stub(redis, 'get').resolves('testRefreshToken');
+
+    const res = await request(app)
+      .post('/api/auth/refresh-tokens')
+      .set('Cookie', 'refreshToken=invalidRefreshToken');
+
+    expect(res.status).to.equal(401);
+    expect(res.body.message).to.equal('Invalid refresh token');
+  });
 });
