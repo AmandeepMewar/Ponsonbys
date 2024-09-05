@@ -1,4 +1,5 @@
 import Product from '../models/product.model.js';
+import { redis } from '../utils/redis.js';
 import {
   uploadOnCloudinary,
   deleteFromCloudinary,
@@ -8,6 +9,31 @@ export async function getAllProducts(req, res) {
   try {
     const products = await Product.find();
     res.status(200).json({ status: 'success', result: products });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+}
+
+export async function getFeaturedProducts(req, res) {
+  try {
+    let featuredProducts = await redis.get('featured_products');
+    if (featuredProducts) {
+      return res
+        .status(200)
+        .json({ status: 'success', result: JSON.parse(featuredProducts) });
+    }
+
+    featuredProducts = await Product.find({ isFeatured: true }).lean();
+
+    if (!featuredProducts) {
+      res
+        .status(401)
+        .json({ status: 'fail', message: 'No featured products found' });
+    }
+
+    await redis.set('featured_products', JSON.stringify(featuredProducts));
+
+    res.status(200).json({ status: 'success', result: featuredProducts });
   } catch (error) {
     res.status(500).json({ status: 'error', message: error.message });
   }
