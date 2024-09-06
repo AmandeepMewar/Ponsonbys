@@ -38,3 +38,31 @@ export async function removeAllFromCart(req, res) {
     res.status(500).json({ status: 'error', message: error.message });
   }
 }
+
+export async function updateQuantity(req, res) {
+  try {
+    const { productId } = req.params;
+
+    const { quantity } = res.body;
+    const user = req.user;
+
+    const existingItem = user.cartItems.find((item) => item.id === productId);
+
+    if (existingItem) {
+      if (quantity === 0) {
+        user.cartItems = user.cartItems.filter((item) => item.id !== productId);
+        await user.save();
+        return res
+          .status(200)
+          .json({ status: 'success', result: user.cartItems });
+      }
+      existingItem.quantity = quantity;
+      await user.save();
+      res.status(200).json({ status: 'success', result: user.cartItems });
+    } else {
+      res.status(404).json({ status: 'fail', message: 'Product not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+}
