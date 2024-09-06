@@ -1,3 +1,25 @@
+import Product from '../models/product.model.js';
+
+export async function getCartProducts(req, res) {
+  try {
+    const products = await Product.find({
+      _id: { $in: req.user.cartItems },
+    });
+
+    // adding quantities from user cartItem to products
+    const cartItems = products.map((product) => {
+      const item = req.user.cartItems.find(
+        (cartItem) => cartItem.id === product.id
+      );
+      return { ...product.toJSON(), quantity: item.quantity };
+    });
+
+    res.status(200).json({ status: 'success', result: cartItems });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+}
+
 export async function addToCart(req, res) {
   try {
     const { productId } = req.body;
