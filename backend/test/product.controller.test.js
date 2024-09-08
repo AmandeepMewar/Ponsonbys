@@ -64,4 +64,23 @@ describe('Product Controller', function () {
       expect(res.body.result).to.be.an('array');
     });
   });
+
+  describe('GET /recommendations', function () {
+    it('Should get recommended products', async function () {
+      sandbox.stub(Product, 'aggregate').resolves([
+        {
+          _id: '60d5f60f2f6c4c1d3d8e4c9b',
+          name: 'test',
+          description: 'test description',
+          price: 100,
+          image: '',
+        },
+      ]);
+
+      const res = await request(app).get('/api/products/recommendations');
+
+      expect(res.status).to.be.equal(200);
+      expect(res.body.result).to.be.an('array');
+    });
+  });
 });
