@@ -83,4 +83,24 @@ describe('Product Controller', function () {
       expect(res.body.result).to.be.an('array');
     });
   });
+
+  describe('GET /products/category/:category', function () {
+    it('Should get products by category', async function () {
+      sandbox.stub(Product, 'find').resolves([
+        {
+          _id: '60d5f60f2f6c4c1d3d8e4c9b',
+          name: 'test',
+          description: 'test description',
+          price: 100,
+          image: '',
+          category: 'test',
+        },
+      ]);
+
+      const res = await request(app).get('/api/products/category/:test');
+
+      expect(res.status).to.equal(200);
+      expect(res.body.result).to.be.an('array');
+    });
+  });
 });
