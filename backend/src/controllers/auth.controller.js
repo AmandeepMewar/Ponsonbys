@@ -171,3 +171,11 @@ export async function refreshTokens(req, res) {
     res.status(500).json({ status: 'error', message: error.message });
   }
 }
+
+export async function getProfile(req, res) {
+  try {
+    res.status(200).json({ status: 'success', result: req.user });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+}
