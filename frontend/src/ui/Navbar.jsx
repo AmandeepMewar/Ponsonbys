@@ -14,7 +14,7 @@ export default function Navbar() {
   return (
     <nav className='flex text-sm gap-5 justify-center items-center'>
       <NavLink to='/' className='flex gap-1 items-center hover:text-orange-500'>
-        <House size={20} />
+        <House size={20} data-testid='home-icon' />
         <span>Home</span>
       </NavLink>
       <NavLink
@@ -23,8 +23,8 @@ export default function Navbar() {
       >
         <ShoppingBag size={20} />
         <span>Shopping Bag</span>
-        <span className=' bg-yellow-900 rounded-full px-2 py-0.5 text-yellow-50 text-xs'>
-          2
+        <span className=' bg-yellow-900 rounded-full px-1.5 py-0.5 text-yellow-50 text-xs'>
+          3
         </span>
       </NavLink>
       {isAdmin && (
