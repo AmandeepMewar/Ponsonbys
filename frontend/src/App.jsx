@@ -11,9 +11,9 @@ function App() {
         <Route element={<AppLayout />}>
           <Route index element={<Navigate replace to='home' />} />
           <Route path='home' element={<Home />} />
+          <Route path='login' element={<Login />} />
+          <Route path='signup' element={<SignUp />} />
         </Route>
-        <Route path='login' element={<Login />} />
-        <Route path='signup' element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );
