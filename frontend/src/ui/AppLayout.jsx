@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom';
-import Navbar from './Navbar';
+import Header from './Header';
 export default function AppLayout() {
   return (
-    <div>
-      <Navbar />
+    <div className='min-h-screen bg-yellow-50 text-yellow-900 flex flex-col'>
+      <Header />
       <main>
         <Outlet />
       </main>
