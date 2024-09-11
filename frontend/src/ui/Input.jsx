@@ -5,8 +5,7 @@ const Input = React.forwardRef(function Input(props, ref) {
     <input
       {...props}
       ref={ref}
-      className='block w-full py-2 px-10 bg-yellow-50 border border-yellow-800 rounded-md shadow-sm
-                 placeholder-yellow-700 focus:outline-none focus:ring-yellow-900 focus:border-orange-600 sm:text-sm'
+      className='block w-full rounded-md border border-yellow-800 bg-yellow-50 px-10 py-2 placeholder-yellow-700 shadow-sm focus:border-orange-600 focus:outline-none focus:ring-yellow-900 sm:text-sm'
     />
   );
 });

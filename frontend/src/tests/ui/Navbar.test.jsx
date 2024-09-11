@@ -1,7 +1,6 @@
-import { render, screen } from '../test-utils.js';
-
-import Navbar from '../../ui/Navbar.jsx';
 import { expect } from 'vitest';
+import Navbar from '../../ui/Navbar.jsx';
+import { render, screen } from '../test-utils.js';
 
 describe('Navbar Component', () => {
   it('should render home link with icon', () => {

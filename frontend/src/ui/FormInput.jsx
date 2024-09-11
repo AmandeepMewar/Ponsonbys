@@ -9,7 +9,7 @@ export default function FormInput({ label, htmlFor, error, children }) {
       </label>
       <div className='relative rounded-md shadow-sm'>{children}</div>
       {error && (
-        <p className='text-xs font-medium text-red-500 pl-2 pt-1'>{error}</p>
+        <p className='pl-2 pt-1 text-xs font-medium text-red-500'>{error}</p>
       )}
     </div>
   );

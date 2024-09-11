@@ -1,25 +1,25 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import {
-  Mail,
-  User,
-  Lock,
-  UserPlus,
+  ArrowRight,
   Eye,
   EyeOff,
-  ArrowRight,
+  Lock,
+  Mail,
+  User,
+  UserPlus,
 } from 'lucide-react';
-import FormInput from '../../ui/FormInput';
-import InputIcon from '../../ui/InputIcon';
-import Input from '../../ui/Input';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import FormInput from '../../ui/FormInput';
+import Input from '../../ui/Input';
+import InputIcon from '../../ui/InputIcon';
 
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
   const { register, formState, handleSubmit, getValues } = useForm();
   const { errors } = formState;
 
-  function onSubmit() { }
+  function onSubmit() {}
   return (
     <form className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
       <FormInput
@@ -77,7 +77,7 @@ export default function SignUpForm() {
 
         <InputIcon
           Icon={showPassword ? Eye : EyeOff}
-          className='absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer'
+          className='absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3'
           onClick={() => setShowPassword((s) => !s)}
         />
       </FormInput>
@@ -102,10 +102,7 @@ export default function SignUpForm() {
 
       <button
         type='submit'
-        className='w-full flex justify-center py-2 px-4 border border-transparent 
-							rounded-md shadow-sm text-sm font-medium text-white bg-yellow-700
-							 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2
-							  focus:ring-orange-600 transition duration-150 ease-in-out disabled:opacity-50'
+        className='flex w-full justify-center rounded-md border border-transparent bg-yellow-700 px-4 py-2 text-sm font-medium text-white shadow-sm transition duration-150 ease-in-out hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 disabled:opacity-50'
       >
         <UserPlus className='mr-2 h-5 w-5' /> Sign up
       </button>
