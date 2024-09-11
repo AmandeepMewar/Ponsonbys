@@ -5,13 +5,23 @@ import { Link } from 'react-router-dom';
 import FormInput from '../../ui/FormInput';
 import Input from '../../ui/Input';
 import InputIcon from '../../ui/InputIcon';
+import { useLogin } from './useLogin';
 
 export default function LoginForm() {
+  const { login, isLoading } = useLogin();
   const [showPassword, setShowPassword] = useState(false);
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit, formState, reset } = useForm();
   const { errors } = formState;
 
-  function onSubmit() {}
+  function onSubmit({ email, password }) {
+    login(
+      { email, password },
+      {
+        onSettled: () => reset(),
+      }
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
       <FormInput
@@ -23,6 +33,7 @@ export default function LoginForm() {
         <Input
           type='email'
           id='email'
+          disabled={isLoading}
           placeholder='you@example.com'
           {...register('email', {
             required: 'This field is required',
@@ -41,8 +52,9 @@ export default function LoginForm() {
       >
         <InputIcon Icon={Lock} />
         <Input
-          type='password'
+          type={showPassword ? 'text' : 'password'}
           id='password'
+          disabled={isLoading}
           {...register('password', { required: 'This field is required' })}
         />
         <InputIcon
@@ -55,6 +67,7 @@ export default function LoginForm() {
       <button
         type='submit'
         className='flex w-full justify-center rounded-md border border-transparent bg-yellow-700 px-4 py-2 text-sm font-medium text-white shadow-sm transition duration-150 ease-in-out hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 disabled:opacity-50'
+        disabled={isLoading}
       >
         <LogIn className='mr-2 h-5 w-5' /> Login
       </button>
