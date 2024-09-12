@@ -1,15 +1,8 @@
-import {
-  ArrowRight,
-  Eye,
-  EyeOff,
-  Lock,
-  Mail,
-  User,
-  UserPlus,
-} from 'lucide-react';
+import { Eye, EyeOff, Lock, Mail, User, UserPlus } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import AuthLink from '../../ui/AuthLink';
+import Button from '../../ui/Button';
 import FormInput from '../../ui/FormInput';
 import Input from '../../ui/Input';
 import InputIcon from '../../ui/InputIcon';
@@ -116,23 +109,11 @@ export default function SignUpForm() {
         />
       </FormInput>
 
-      <button
-        type='submit'
-        className='flex w-full justify-center rounded-md border border-transparent bg-yellow-700 px-4 py-2 text-sm font-medium text-white shadow-sm transition duration-150 ease-in-out hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 disabled:opacity-50'
-        disabled={isLoading}
-      >
+      <Button type='submit' disabled={isLoading}>
         <UserPlus className='mr-2 h-5 w-5' /> Sign up
-      </button>
+      </Button>
 
-      <p className='mt-8 text-center text-sm text-yellow-700'>
-        Already have an account?{' '}
-        <Link
-          to='/login'
-          className='font-semibold text-orange-600 hover:text-orange-500'
-        >
-          Login here <ArrowRight className='inline h-4 w-4' />
-        </Link>
-      </p>
+      <AuthLink message='Already have an account? ' linkText='Login here' />
     </form>
   );
 }
