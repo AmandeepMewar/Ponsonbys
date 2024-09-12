@@ -1,5 +1,4 @@
 export async function signup(user) {
-  console.log(user);
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
@@ -25,7 +24,6 @@ export async function login(user) {
   });
 
   const data = await response.json();
-  console.log(data);
   if (!response.ok)
     throw new Error(data.message || 'An error occurred. Please try again.');
 

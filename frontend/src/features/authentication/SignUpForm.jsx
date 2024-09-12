@@ -13,13 +13,25 @@ import { Link } from 'react-router-dom';
 import FormInput from '../../ui/FormInput';
 import Input from '../../ui/Input';
 import InputIcon from '../../ui/InputIcon';
+import { useSignup } from './useSignup';
 
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const { register, formState, handleSubmit, getValues } = useForm();
+  const { signup, isLoading } = useSignup();
+  const { register, formState, handleSubmit, getValues, reset } = useForm();
   const { errors } = formState;
 
-  function onSubmit() {}
+  function onSubmit({ fullName, email, password, confirmPassword }) {
+    signup(
+      {
+        name: fullName,
+        email,
+        password,
+        passwordConfirm: confirmPassword,
+      },
+      { onSettled: () => reset() }
+    );
+  }
   return (
     <form className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
       <FormInput
@@ -32,6 +44,7 @@ export default function SignUpForm() {
           id='fullName'
           type='text'
           placeholder='John Doe'
+          disabled={isLoading}
           {...register('fullName', { required: 'This field is required' })}
         />
       </FormInput>
@@ -46,6 +59,7 @@ export default function SignUpForm() {
           id='email'
           type='email'
           placeholder='you@example.com'
+          disabled={isLoading}
           {...register('email', {
             required: 'This field is required',
             pattern: {
@@ -66,6 +80,7 @@ export default function SignUpForm() {
           id='password'
           type={showPassword ? 'text' : 'password'}
           placeholder='••••••••'
+          disabled={isLoading}
           {...register('password', {
             required: 'This field is required',
             minLength: {
@@ -92,6 +107,7 @@ export default function SignUpForm() {
           id='confirmPassword'
           type='password'
           placeholder='••••••••'
+          disabled={isLoading}
           {...register('confirmPassword', {
             required: 'This field is required',
             validate: (value) =>
@@ -103,6 +119,7 @@ export default function SignUpForm() {
       <button
         type='submit'
         className='flex w-full justify-center rounded-md border border-transparent bg-yellow-700 px-4 py-2 text-sm font-medium text-white shadow-sm transition duration-150 ease-in-out hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 disabled:opacity-50'
+        disabled={isLoading}
       >
         <UserPlus className='mr-2 h-5 w-5' /> Sign up
       </button>
