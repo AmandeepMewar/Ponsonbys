@@ -1,46 +1,46 @@
-import js from "@eslint/js";
-import globals from "globals";
-import react from "eslint-plugin-react";
-import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
-import jestDom from "eslint-plugin-jest-dom";
-import vitest from "eslint-plugin-vitest";
+import js from '@eslint/js';
+import jestDom from 'eslint-plugin-jest-dom';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import vitest from 'eslint-plugin-vitest';
+import globals from 'globals';
 
 export default [
-  { ignores: ["dist"] },
+  { ignores: ['dist'] },
   {
-    files: ["**/*.{js,jsx}"],
+    files: ['**/*.{js,jsx}'],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: { ...globals.browser, ...globals.jest },
+      globals: { ...globals.browser, ...globals.jest, ...globals.node },
       parserOptions: {
-        ecmaVersion: "latest",
+        ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
-        sourceType: "module",
+        sourceType: 'module',
       },
     },
-    settings: { react: { version: "18.3" } },
+    settings: { react: { version: '18.3' } },
     plugins: {
       react,
-      "react-hooks": reactHooks,
-      "react-refresh": reactRefresh,
-      "jest-dom": jestDom,
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+      'jest-dom': jestDom,
       vitest,
     },
     rules: {
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
-      ...react.configs["jsx-runtime"].rules,
+      ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
       ...jestDom.configs.recommended.rules,
       ...vitest.configs.recommended.rules,
-      "react/jsx-no-target-blank": "off",
-      "react-refresh/only-export-components": [
-        "warn",
+      'react/jsx-no-target-blank': 'off',
+      'react-refresh/only-export-components': [
+        'warn',
         { allowConstantExport: true },
       ],
-      "no-unused-vars": "warn",
-      "react/prop-types": "off",
+      'no-unused-vars': 'warn',
+      'react/prop-types': 'off',
     },
   },
 ];
