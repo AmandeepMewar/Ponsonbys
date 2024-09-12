@@ -1,14 +1,17 @@
 export async function signup(user) {
+  console.log(user);
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json', // Tell the server that you're sending JSON data
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(user),
   });
-
   const data = await response.json();
-  console.log(data);
+  if (!response.ok)
+    throw new Error(
+      data.message || 'An Error occurred please try again later.'
+    );
   return data;
 }
 
@@ -21,7 +24,10 @@ export async function login(user) {
     body: JSON.stringify(user),
   });
 
-  const data = response.json();
+  const data = await response.json();
   console.log(data);
+  if (!response.ok)
+    throw new Error(data.message || 'An error occurred. Please try again.');
+
   return data;
 }
