@@ -7,10 +7,16 @@ import {
   UserPlus,
 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
+import { useLogout } from '../features/authentication/useLogout';
+import { useProfile } from '../features/authentication/useProfile';
+import Button from './Button';
+
 export default function Navbar() {
-  // const user = { role: 'admin' };
-  const user = null;
+  const { user } = useProfile();
+  const { logout } = useLogout();
+
   const isAdmin = user?.role === 'admin';
+
   return (
     <nav className='flex items-center justify-center gap-5 text-sm'>
       <NavLink to='/' className='flex items-center gap-1 hover:text-orange-500'>
@@ -34,10 +40,14 @@ export default function Navbar() {
         </NavLink>
       )}
       {user ? (
-        <NavLink className='flex items-center gap-1 rounded-md bg-orange-500 px-2.5 py-1.5 text-yellow-50 hover:bg-orange-600'>
+        <Button
+          type=''
+          className='flex items-center gap-1 rounded-md bg-orange-500 px-2.5 py-1.5 text-yellow-50 hover:bg-orange-600'
+          onClick={logout}
+        >
           <LogOut size={20} />
           <span>Log out</span>
-        </NavLink>
+        </Button>
       ) : (
         <>
           <NavLink
