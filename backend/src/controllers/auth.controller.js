@@ -68,6 +68,7 @@ export async function signup(req, res) {
           name: user.name,
           email: user.email,
           role: user.role,
+          cartItems: user.cartItems,
         },
       },
       message: 'User created successfully',
@@ -174,7 +175,7 @@ export async function refreshTokens(req, res) {
 
 export async function getProfile(req, res) {
   try {
-    res.status(200).json({ status: 'success', result: req.user });
+    res.status(200).json({ status: 'success', result: { user: req.user } });
   } catch (error) {
     res.status(500).json({ status: 'error', message: error.message });
   }
