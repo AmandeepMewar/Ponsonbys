@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import AppLayout from './ui/AppLayout';
+import ProtectRoute from './ui/ProtectRoute';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,8 +22,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
-            <Route index element={<Navigate replace to='home' />} />
-            <Route path='home' element={<Home />} />
+            <Route element={<ProtectRoute />}>
+              <Route index element={<Navigate replace to='home' />} />
+              <Route path='home' element={<Home />} />
+            </Route>
             <Route path='login' element={<Login />} />
             <Route path='signup' element={<SignUp />} />
           </Route>
