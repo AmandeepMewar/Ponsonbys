@@ -12,7 +12,7 @@ export default defineConfig((mode) => {
     },
     server: {
       proxy: {
-        '/api': env?.VITE_API_URL || 'https://ecommerce-4cf2.onrender.com/',
+        '/api': env.VITE_API_URL,
       },
     },
   };
