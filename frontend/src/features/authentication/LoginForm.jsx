@@ -67,7 +67,13 @@ export default function LoginForm() {
       </FormInput>
 
       <Button type='submit' disabled={isLoading}>
-        <LogIn className='mr-2 h-5 w-5' /> Login
+        {isLoading ? (
+          <span>Loading...</span>
+        ) : (
+          <>
+            <LogIn className='mr-2 h-5 w-5' /> Login
+          </>
+        )}
       </Button>
 
       <AuthLink message='Not a member? ' linkText='Sign up now' />
