@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import AllTheProviders from './AllTheProviders';
 
 function customRender(ui, options) {
-  return render(ui, { wrapper: BrowserRouter, ...options });
+  return render(ui, { wrapper: AllTheProviders, ...options });
 }
 
 export * from '@testing-library/react';
