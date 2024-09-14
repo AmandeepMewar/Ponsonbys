@@ -2,6 +2,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import AnalyticsTab from './features/dashboard/AnalyticsTab';
+import CreateProductForm from './features/dashboard/CreateProductForm';
+import ProductList from './features/dashboard/ProductList';
+import Admin from './pages/Admin';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
@@ -22,9 +26,18 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
+            <Route index element={<Navigate replace to='home' />} />
+            <Route path='home' element={<Home />} />
             <Route element={<ProtectRoute />}>
-              <Route index element={<Navigate replace to='home' />} />
-              <Route path='home' element={<Home />} />
+              <Route path='dashboard' element={<Admin />}>
+                <Route
+                  index
+                  element={<Navigate replace to='create-product' />}
+                />
+                <Route path='create-product' element={<CreateProductForm />} />
+                <Route path='products' element={<ProductList />} />
+                <Route path='analytics' element={<AnalyticsTab />} />
+              </Route>
             </Route>
             <Route path='login' element={<Login />} />
             <Route path='signup' element={<SignUp />} />
