@@ -7,7 +7,7 @@ export function useCreateProduct() {
   const navigate = useNavigate();
   const { mutate: createProduct, isPending: isLoading } = useMutation({
     mutationFn: createProductApi,
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success('Product created successfully!');
       navigate('/dashboard/products');
     },
