@@ -16,6 +16,7 @@ export default function Navbar() {
   const { logout } = useLogout();
 
   const isAdmin = user?.role === 'admin';
+  // const isAdmin = true;
 
   return (
     <nav className='flex items-center justify-center gap-5 text-sm'>
@@ -34,7 +35,10 @@ export default function Navbar() {
         </span>
       </NavLink>
       {isAdmin && (
-        <NavLink className='flex items-center gap-1 rounded-md bg-yellow-900 px-2.5 py-1.5 text-yellow-50 hover:bg-yellow-800'>
+        <NavLink
+          to='/dashboard'
+          className='flex items-center gap-1 rounded-md bg-yellow-900 px-2.5 py-1.5 text-yellow-50 hover:bg-yellow-800'
+        >
           <Lock size={20} />
           <span>Dashboard</span>
         </NavLink>
