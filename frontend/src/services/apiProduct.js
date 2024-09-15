@@ -23,8 +23,17 @@ export async function getAllProducts() {
 
   const data = await response.json();
 
-  console.log(response.ok);
   if (!response.ok) throw new Error(data.message);
 
   return data.result;
+}
+
+export async function deleteProduct(id) {
+  const response = await fetch(`/api/products/${id}`, { method: 'DELETE' });
+
+  const data = await response.json();
+
+  if (!response.ok) throw new Error(data.message);
+
+  return data;
 }
