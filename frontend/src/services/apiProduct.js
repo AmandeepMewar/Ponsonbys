@@ -37,3 +37,13 @@ export async function deleteProduct(id) {
 
   return data;
 }
+
+export async function toggleFeaturedProduct(id) {
+  const response = await fetch(`/api/products/${id}`, { method: 'PATCH' });
+
+  const data = await response.json();
+
+  if (!response.ok) throw new Error(data.message);
+
+  return data.result;
+}
