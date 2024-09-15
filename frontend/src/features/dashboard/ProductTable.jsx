@@ -9,9 +9,9 @@ import { useToggleFeaturedProduct } from './useToggleFeaturedProduct';
 const headers = ['Product', 'Price', 'Category', 'Featured', 'Actions'];
 
 export default function ProductTable() {
-  const { data: products, isLoadingProducts } = useProducts();
-  const { deleteProduct, isLoadingDelete } = useDeleteProduct();
-  const { toggleFeaturedProduct, isLoadingFeatured } =
+  const { data: products, isLoading: isLoadingProducts } = useProducts();
+  const { deleteProduct, isLoading: isLoadingDelete } = useDeleteProduct();
+  const { toggleFeaturedProduct, isLoading: isLoadingFeatured } =
     useToggleFeaturedProduct();
 
   const isLoading = isLoadingProducts || isLoadingDelete || isLoadingFeatured;
