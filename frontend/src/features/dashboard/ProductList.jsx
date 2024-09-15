@@ -1,8 +1,14 @@
-import Loader from '../../ui/Loader';
-import { useProducts } from './useProducts';
+import { motion } from 'framer-motion';
+import ProductTable from './ProductTable';
 export default function ProductList() {
-  const { data, isLoading } = useProducts();
-  console.log(data);
-  if (isLoading) return <Loader />;
-  return <div>ProductList</div>;
+  return (
+    <motion.div
+      className='mx-auto max-w-4xl overflow-hidden rounded-lg bg-yellow-100 shadow-lg'
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      <ProductTable />
+    </motion.div>
+  );
 }
