@@ -16,13 +16,13 @@ export async function uploadOnCloudinary(localFilePath) {
 
     const response = await cloudinary.uploader.upload(localFilePath, {
       resource_type: 'image',
-      folder: 'ecommerce_products',
+      folder: 'ponsonbys',
     });
 
     fs.unlinkSync(localFilePath);
     return response;
   } catch (error) {
-    console.log(`Cloudinary uploading error: ${error.messsage}`);
+    console.log(`Cloudinary uploading error: ${error.message}`);
     fs.unlinkSync(localFilePath);
     return null;
   }
@@ -30,9 +30,9 @@ export async function uploadOnCloudinary(localFilePath) {
 
 export async function deleteFromCloudinary(publicId) {
   try {
-    await cloudinary.uploader.destroy(`ecommerce_products/${publicId}`);
+    await cloudinary.uploader.destroy(`ponsonbys/${publicId}`);
     console.log('deleted image from cloudinary');
   } catch (error) {
-    console.log(`Cloudinary deleting error: ${error.messsage}`);
+    console.log(`Cloudinary deleting error: ${error.message}`);
   }
 }
