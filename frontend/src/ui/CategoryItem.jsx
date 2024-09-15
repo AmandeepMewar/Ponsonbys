@@ -5,7 +5,7 @@ const CategoryItem = ({ category }) => {
     <div className='group relative h-96 w-full overflow-hidden rounded-lg'>
       <Link to={'/category' + category.href}>
         <div className='h-full w-full cursor-pointer'>
-          <div className='absolute inset-0 z-10 bg-gradient-to-b from-transparent to-gray-900 opacity-50' />
+          <div className='absolute inset-0 z-10 bg-gradient-to-b from-transparent to-yellow-950 opacity-50' />
           <img
             src={category.imageUrl}
             alt={category.name}
