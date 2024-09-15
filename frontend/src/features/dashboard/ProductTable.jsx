@@ -4,16 +4,21 @@ import Loader from '../../ui/Loader';
 import Table from '../../ui/Table';
 import { useDeleteProduct } from './useDeleteProduct';
 import { useProducts } from './useProducts';
+import { useToggleFeaturedProduct } from './useToggleFeaturedProduct';
 
 const headers = ['Product', 'Price', 'Category', 'Featured', 'Actions'];
 
 export default function ProductTable() {
-  const { data: products, isLoading } = useProducts();
-  const { deleteProduct } = useDeleteProduct();
+  const { data: products, isLoadingProducts } = useProducts();
+  const { deleteProduct, isLoadingDelete } = useDeleteProduct();
+  const { toggleFeaturedProduct, isLoadingFeatured } =
+    useToggleFeaturedProduct();
+
+  const isLoading = isLoadingProducts || isLoadingDelete || isLoadingFeatured;
 
   if (isLoading) return <Loader />;
 
-  if (!products.length)
+  if (!products?.length)
     return (
       <p className='rounded-md border border-red-300 bg-red-100 px-8 py-4 text-lg font-semibold text-yellow-800 shadow-lg'>
         📦 No products found. Start adding new products to manage your
@@ -47,6 +52,7 @@ export default function ProductTable() {
 
             <Table.Row>
               <Button
+                onClick={() => toggleFeaturedProduct(product._id)}
                 className={`rounded-full p-1 ${
                   product.isFeatured
                     ? 'bg-orange-600 text-yellow-200'
