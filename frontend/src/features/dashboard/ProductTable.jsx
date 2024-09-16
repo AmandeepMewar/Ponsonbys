@@ -1,6 +1,7 @@
 import { Star, Trash } from 'lucide-react';
 import Button from '../../ui/Button';
 import Loader from '../../ui/Loader';
+import NotFound from '../../ui/NotFound';
 import Table from '../../ui/Table';
 import { useDeleteProduct } from './useDeleteProduct';
 import { useProducts } from './useProducts';
@@ -20,10 +21,10 @@ export default function ProductTable() {
 
   if (!products?.length)
     return (
-      <p className='rounded-md border border-red-300 bg-red-100 px-8 py-4 text-lg font-semibold text-yellow-800 shadow-lg'>
+      <NotFound>
         📦 No products found. Start adding new products to manage your
         inventory.
-      </p>
+      </NotFound>
     );
 
   return (
