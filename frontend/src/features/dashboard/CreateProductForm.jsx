@@ -37,7 +37,7 @@ export default function CreateProductForm() {
           <InputIcon Icon={Box} />
           <Input
             type='text'
-            placeholder='Nike Shoes'
+            placeholder='e.g., Nike Air Max'
             id='productName'
             disabled={isLoading}
             {...register('productName', {
@@ -52,7 +52,7 @@ export default function CreateProductForm() {
         >
           <InputIcon Icon={Text} />
           <textarea
-            placeholder='A luxury nike shoes'
+            placeholder='e.g., High-quality running shoes'
             rows='3'
             name='description'
             disabled={isLoading}
@@ -69,7 +69,7 @@ export default function CreateProductForm() {
             id='price'
             step='0.01'
             disabled={isLoading}
-            placeholder='2000'
+            placeholder='e.g., 1999.99'
             {...register('price', { required: 'This field is required' })}
           />
         </FormInput>
@@ -77,7 +77,7 @@ export default function CreateProductForm() {
         <FormInput
           label='Category'
           htmlFor='category'
-          error={errors?.price?.message}
+          error={errors?.category?.message}
         >
           <select
             id='category'
