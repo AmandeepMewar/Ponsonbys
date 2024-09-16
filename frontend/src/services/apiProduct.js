@@ -47,3 +47,13 @@ export async function toggleFeaturedProduct(id) {
 
   return data.result;
 }
+
+export async function getProductsByCategory(category) {
+  const response = await fetch(`/api/products/category/${category}`);
+
+  const data = await response.json();
+
+  if (!response.ok) throw new Error(data.message);
+
+  return data.result;
+}
