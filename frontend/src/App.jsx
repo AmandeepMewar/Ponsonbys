@@ -6,6 +6,7 @@ import AnalyticsTab from './features/dashboard/AnalyticsTab';
 import CreateProductForm from './features/dashboard/CreateProductForm';
 import ProductList from './features/dashboard/ProductList';
 import Admin from './pages/Admin';
+import Category from './pages/Category';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
@@ -28,6 +29,7 @@ function App() {
           <Route element={<AppLayout />}>
             <Route index element={<Navigate replace to='home' />} />
             <Route path='home' element={<Home />} />
+            <Route path='category/:category' element={<Category />} />
             <Route element={<ProtectRoute />}>
               <Route path='dashboard' element={<Admin />}>
                 <Route
