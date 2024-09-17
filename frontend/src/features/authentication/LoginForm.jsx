@@ -6,6 +6,7 @@ import Button from '../../ui/Button';
 import FormInput from '../../ui/FormInput';
 import Input from '../../ui/Input';
 import InputIcon from '../../ui/InputIcon';
+import LoaderMini from '../../ui/LoaderMini';
 import { useLogin } from './useLogin';
 
 export default function LoginForm() {
@@ -68,7 +69,7 @@ export default function LoginForm() {
 
       <Button type='submit' disabled={isLoading}>
         {isLoading ? (
-          <span>Loading...</span>
+          <LoaderMini />
         ) : (
           <>
             <LogIn className='mr-2 h-5 w-5' /> Login

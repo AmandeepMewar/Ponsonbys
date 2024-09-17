@@ -6,6 +6,7 @@ import Button from '../../ui/Button';
 import FormInput from '../../ui/FormInput';
 import Input from '../../ui/Input';
 import InputIcon from '../../ui/InputIcon';
+import LoaderMini from '../../ui/LoaderMini';
 import { useSignup } from './useSignup';
 
 export default function SignUpForm() {
@@ -110,7 +111,13 @@ export default function SignUpForm() {
       </FormInput>
 
       <Button type='submit' disabled={isLoading}>
-        <UserPlus className='mr-2 h-5 w-5' /> Sign up
+        {isLoading ? (
+          <LoaderMini />
+        ) : (
+          <>
+            <UserPlus className='mr-2 h-5 w-5' /> <span>Sign up</span>
+          </>
+        )}
       </Button>
 
       <AuthLink message='Already have an account? ' linkText='Login here' />

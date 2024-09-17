@@ -3,19 +3,21 @@ import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../ui/Button';
-import Loader from '../../ui/Loader';
+import LoaderMini from '../../ui/LoaderMini';
 import { formatCurrency } from '../../utils/helpers';
 import { useProfile } from '../authentication/useProfile';
 import { useAddToCart } from '../cart/useAddToCart';
 
 export default function ProductItem({ product }) {
   const navigate = useNavigate();
-  const { user } = useProfile();
-  const { addToCart, isLoading } = useAddToCart();
+  const { user, isLoading: isLoadingProfile } = useProfile();
+  const { addToCart, isLoading: isLoadingCart } = useAddToCart();
 
   const [isHover, setIsHover] = useState(false);
   const description =
     product.description.split(' ').slice(0, 5).join(' ') + '...';
+
+  const isLoading = isLoadingCart || isLoadingProfile;
 
   const price = formatCurrency(product.price);
 
@@ -32,8 +34,6 @@ export default function ProductItem({ product }) {
     }
   }
 
-  if (isLoading) return <Loader />;
-
   return (
     <div className='relative flex w-full flex-col gap-2 overflow-hidden rounded-lg border bg-yellow-100 shadow-lg'>
       <div className='relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl'>
@@ -48,9 +48,16 @@ export default function ProductItem({ product }) {
       <Button
         className='mx-3 flex items-center justify-center rounded-lg bg-yellow-700 px-4 py-2.5 text-center text-sm font-medium text-yellow-50 transition duration-150 hover:bg-orange-600 focus:outline-none focus:ring-orange-600'
         onClick={handleAddToCart}
+        disabled={isLoading}
       >
-        <ShoppingCart size={22} className='mr-2' />
-        Add to cart
+        {isLoading ? (
+          <LoaderMini />
+        ) : (
+          <>
+            <span>Add to cart</span>
+            <ShoppingCart size={22} className='mr-2' />
+          </>
+        )}
       </Button>
 
       <div
