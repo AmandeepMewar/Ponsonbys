@@ -3,14 +3,14 @@ import Product from '../models/product.model.js';
 export async function getCartProducts(req, res) {
   try {
     const products = await Product.find({
-      _id: { $in: req.user.cartItems },
+      _id: { $in: req.user.cartItems.map((item) => item.product) },
     });
 
     // adding quantities from user cartItem to products
     const cartItems = products.map((product) => {
-      const item = req.user.cartItems.find(
-        (cartItem) => cartItem.id === product.id
-      );
+      const item = req.user.cartItems.find((cartItem) => {
+        return cartItem.product.toString() === product._id.toString();
+      });
       return { ...product.toJSON(), quantity: item.quantity };
     });
 
@@ -52,7 +52,9 @@ export async function removeAllFromCart(req, res) {
     if (!productId) {
       user.cartItems = [];
     } else {
-      user.cartItems = user.cartItems.filter((item) => item.id !== productId);
+      user.cartItems = user.cartItems.filter(
+        (item) => item.product.toString() !== productId.toString()
+      );
     }
 
     await user.save();
