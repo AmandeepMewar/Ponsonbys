@@ -28,6 +28,7 @@ const userSchema = new mongoose.Schema(
         },
         message: 'Passwords do not match',
       },
+      select: false,
     },
     cartItems: [
       {
