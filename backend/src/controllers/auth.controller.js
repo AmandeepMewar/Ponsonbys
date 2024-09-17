@@ -97,6 +97,7 @@ export async function login(req, res) {
             name: user.name,
             email: user.email,
             role: user.role,
+            cartItems: user.cartItems,
           },
         },
         message: 'Logged In Successfully',
