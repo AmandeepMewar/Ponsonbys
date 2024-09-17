@@ -54,8 +54,8 @@ export default function ProductItem({ product }) {
           <LoaderMini />
         ) : (
           <>
-            <span>Add to cart</span>
             <ShoppingCart size={22} className='mr-2' />
+            <span>Add to cart</span>
           </>
         )}
       </Button>
