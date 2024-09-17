@@ -3,12 +3,15 @@ import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../ui/Button';
+import Loader from '../../ui/Loader';
 import { formatCurrency } from '../../utils/helpers';
 import { useProfile } from '../authentication/useProfile';
+import { useAddToCart } from '../cart/useAddToCart';
 
 export default function ProductItem({ product }) {
   const navigate = useNavigate();
   const { user } = useProfile();
+  const { addToCart, isLoading } = useAddToCart();
 
   const [isHover, setIsHover] = useState(false);
   const description =
@@ -18,7 +21,7 @@ export default function ProductItem({ product }) {
 
   function handleAddToCart() {
     if (user) {
-      // TODO:
+      addToCart(product._id);
     } else {
       toast('Please log in to add items to your cart', {
         icon: (
@@ -28,6 +31,8 @@ export default function ProductItem({ product }) {
       navigate('/login');
     }
   }
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className='relative flex w-full flex-col gap-2 overflow-hidden rounded-lg border bg-yellow-100 shadow-lg'>

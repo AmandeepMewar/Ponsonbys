@@ -6,6 +6,7 @@ import AnalyticsTab from './features/dashboard/AnalyticsTab';
 import CreateProductForm from './features/dashboard/CreateProductForm';
 import ProductList from './features/dashboard/ProductList';
 import Admin from './pages/Admin';
+import Cart from './pages/Cart';
 import Category from './pages/Category';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -31,6 +32,7 @@ function App() {
             <Route path='home' element={<Home />} />
             <Route path='category/:category' element={<Category />} />
             <Route element={<ProtectRoute />}>
+              <Route path='cart' element={<Cart />} />
               <Route path='dashboard' element={<Admin />}>
                 <Route
                   index
@@ -41,6 +43,7 @@ function App() {
                 <Route path='analytics' element={<AnalyticsTab />} />
               </Route>
             </Route>
+
             <Route path='login' element={<Login />} />
             <Route path='signup' element={<SignUp />} />
           </Route>
