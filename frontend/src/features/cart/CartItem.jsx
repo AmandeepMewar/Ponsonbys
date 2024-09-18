@@ -13,7 +13,7 @@ function CartItem({ product }) {
   const productPrice = price * quantity;
 
   return (
-    <li className='bg-yellow-100 px-5 py-3 shadow-lg sm:flex sm:items-center sm:justify-between'>
+    <div className='rounded-lg bg-yellow-100 px-5 py-3 shadow-lg sm:flex sm:items-center sm:justify-between'>
       <div className='flex items-center gap-8'>
         <img
           src={image}
@@ -27,7 +27,7 @@ function CartItem({ product }) {
       <div className='flex items-center justify-between sm:gap-6'>
         <p className='text-lg font-semibold'>{formatCurrency(productPrice)}</p>
 
-        <UpdateItemQuantity quantity={product.quantity} />
+        <UpdateItemQuantity quantity={product.quantity} productId={productId} />
         <Button
           className='flex h-10 w-10 items-center justify-center rounded-full bg-orange-500'
           onClick={() => {
@@ -42,7 +42,7 @@ function CartItem({ product }) {
           )}
         </Button>
       </div>
-    </li>
+    </div>
   );
 }
 
