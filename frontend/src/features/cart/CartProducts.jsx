@@ -1,14 +1,19 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import Loader from '../../ui/Loader';
 import NotFound from '../../ui/NotFound';
 import { useProfile } from '../authentication/useProfile';
 import CartItem from './CartItem';
+import CouponCard from './CouponCard';
+import OrderSummary from './OrderSummary';
 import Recommendations from './Recommendations';
 import { useGetCartProducts } from './useGetCartProducts';
 
 export default function CartProducts() {
   const { cart = [], isLoading } = useGetCartProducts();
   const { user } = useProfile();
+
+  const [isCouponApplied, setIsCouponApplied] = useState(false);
 
   if (isLoading) return <Loader />;
 
@@ -43,7 +48,16 @@ export default function CartProducts() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-        ></motion.div>
+        >
+          <OrderSummary
+            isCouponApplied={isCouponApplied}
+            setIsCouponApplied={setIsCouponApplied}
+          />
+          <CouponCard
+            isCouponApplied={isCouponApplied}
+            setIsCouponApplied={setIsCouponApplied}
+          />
+        </motion.div>
       )}
     </div>
   );
