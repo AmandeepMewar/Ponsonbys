@@ -57,3 +57,13 @@ export async function getProductsByCategory(category) {
 
   return data.result;
 }
+
+export async function getRecommendedProducts() {
+  const response = await fetch('/api/products/recommendations');
+
+  const data = await response.json();
+
+  if (!response.ok) throw new Error(data.message);
+
+  return data.result;
+}
