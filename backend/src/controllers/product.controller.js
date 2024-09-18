@@ -44,7 +44,6 @@ export async function createProduct(req, res) {
     const { name, description, price, category } = req.body;
 
     const image = req.file.path;
-    console.log(image);
 
     const cloudinaryResponse = await uploadOnCloudinary(image);
     const product = await Product.create({
@@ -75,7 +74,6 @@ export async function deleteProduct(req, res) {
 
     if (product.image) {
       const publicId = product.image.split('/').pop().split('.')[0];
-      console.log(publicId);
       await deleteFromCloudinary(publicId);
     }
 

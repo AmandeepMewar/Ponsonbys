@@ -11,7 +11,6 @@ const multerStorage = multer.diskStorage({
       ' ',
       ''
     )}_${Date.now()}${ext}`;
-    console.log(filename);
     cb(null, filename);
   },
 });
