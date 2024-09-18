@@ -10,6 +10,7 @@ export function useAddToCart() {
       queryClient.invalidateQueries({
         queryKey: ['user'],
       });
+      queryClient.invalidateQueries({ queryKey: ['cart'] });
       toast.success('Product added to cart successfully');
     },
     onError: (err) => {
