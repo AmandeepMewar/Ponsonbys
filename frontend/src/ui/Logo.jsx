@@ -1,9 +1,14 @@
+import { Link } from 'react-router-dom';
+
 export default function Logo() {
   return (
     <div>
-      <h3 className='text-lg font-bold uppercase text-orange-700 sm:text-2xl'>
+      <Link
+        to='/'
+        className='text-lg font-bold uppercase text-orange-700 sm:text-2xl'
+      >
         Ponsonbys
-      </h3>
+      </Link>
     </div>
   );
 }
