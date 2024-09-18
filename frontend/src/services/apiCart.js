@@ -39,3 +39,19 @@ export async function removeFromCart(productId) {
 
   return data;
 }
+
+export async function updateQuantity({ quantity, productId }) {
+  const response = await fetch(`/api/cart/${productId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ quantity: quantity }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) throw new Error(data.message);
+
+  return data.result;
+}
