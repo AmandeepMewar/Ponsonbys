@@ -10,6 +10,8 @@ import Cart from './pages/Cart';
 import Category from './pages/Category';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import PurchaseCancel from './pages/PurchaseCancel';
+import PurchaseSuccess from './pages/PurchaseSuccess';
 import SignUp from './pages/SignUp';
 import AppLayout from './ui/AppLayout';
 import ProtectRoute from './ui/ProtectRoute';
@@ -33,6 +35,8 @@ function App() {
             <Route path='category/:category' element={<Category />} />
             <Route element={<ProtectRoute />}>
               <Route path='cart' element={<Cart />} />
+              <Route path='/purchase-success' element={<PurchaseSuccess />} />
+              <Route path='/purchase-cancel' element={<PurchaseCancel />} />
               <Route path='dashboard' element={<Admin />}>
                 <Route
                   index
