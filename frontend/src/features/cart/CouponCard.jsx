@@ -13,6 +13,11 @@ export default function CouponCard({ isCouponApplied, setIsCouponApplied }) {
     applyCoupon(codeInput);
   }
 
+  function handleRemoveCoupon() {
+    setIsCouponApplied(false);
+    setCodeInput('');
+  }
+
   useEffect(
     function () {
       if (isSuccess) setIsCouponApplied(true);
@@ -66,6 +71,14 @@ export default function CouponCard({ isCouponApplied, setIsCouponApplied }) {
           <p className='mt-2 text-sm font-medium tracking-widest text-yellow-700'>
             {coupon.code} - {coupon.discountPercentage}% off
           </p>
+
+          <Button
+            type='button'
+            className='mt-2 flex w-full items-center justify-center rounded-lg bg-orange-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-4 focus:ring-orange-500'
+            onClick={handleRemoveCoupon}
+          >
+            Remove Coupon
+          </Button>
         </div>
       )}
 
