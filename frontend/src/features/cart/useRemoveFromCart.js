@@ -7,12 +7,13 @@ export function useRemoveFromCart() {
 
   const { mutate: removeFromCart, isPending: isLoading } = useMutation({
     mutationFn: removeFromCartApi,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['cart'],
-      });
-      queryClient.invalidateQueries({ queryKey: ['user'] });
-      toast.success('Product removed Successfully!');
+    onSuccess: (data) => {
+      queryClient.invalidateQueries(['cart']);
+      queryClient.invalidateQueries(['user']);
+      const message = data.result.length
+        ? 'Product removed from your cart successfully.'
+        : 'Your cart is now empty.';
+      toast.success(message);
     },
     onError: (err) => {
       toast.error(err.message);
