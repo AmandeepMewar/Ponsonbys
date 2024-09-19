@@ -1,16 +1,24 @@
 import { motion } from 'framer-motion';
 import { MoveRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Button from '../../ui/Button';
+import LoaderMini from '../../ui/LoaderMini';
 import { calculateTotals, formatCurrency } from '../../utils/helpers';
 import { useCoupon } from './useCoupon';
+import { useCreateSession } from './useCreateSession';
 import { useGetCartProducts } from './useGetCartProducts';
 
 export default function OrderSummary({ isCouponApplied }) {
   const { cart } = useGetCartProducts();
-  const { coupon, isLoading } = useCoupon();
+  const { coupon } = useCoupon();
+  const { createSession, isLoading } = useCreateSession();
 
   const { total, subTotal } = calculateTotals(cart, coupon, isCouponApplied);
   const savings = (subTotal - total).toFixed(2);
+
+  function handlePayment() {
+    createSession({ cart, coupon: isCouponApplied ? coupon : null });
+  }
 
   return (
     <motion.div
@@ -57,13 +65,13 @@ export default function OrderSummary({ isCouponApplied }) {
           </dl>
         </div>
 
-        <motion.button
+        <Button
           className='flex w-full items-center justify-center rounded-lg bg-yellow-700 px-5 py-2.5 text-sm font-medium text-yellow-50 hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-600'
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          onClick={handlePayment}
+          disabled={isLoading}
         >
-          Proceed to Checkout
-        </motion.button>
+          {isLoading ? <LoaderMini /> : 'Proceed to Checkout'}
+        </Button>
 
         <div className='flex items-center justify-center gap-2'>
           <span className='text-sm font-normal text-yellow-700'>or</span>
