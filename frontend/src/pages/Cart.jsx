@@ -1,4 +1,4 @@
-import CartProducts from '../features/cart/CartProducts';
+import CartProducts from '../features/cart/components/CartProducts';
 
 export default function Cart() {
   return (

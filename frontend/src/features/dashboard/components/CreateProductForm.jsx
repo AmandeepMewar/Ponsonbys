@@ -1,10 +1,10 @@
 import { Box, IndianRupee, PackagePlus, Text, Upload } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import Button from '../../ui/Button';
-import FormInput from '../../ui/FormInput';
-import Input from '../../ui/Input';
-import InputIcon from '../../ui/InputIcon';
-import { useCreateProduct } from './useCreateProduct';
+import Button from '../../../ui/Button';
+import FormInput from '../../../ui/FormInput';
+import Input from '../../../ui/Input';
+import InputIcon from '../../../ui/InputIcon';
+import { useCreateProduct } from '../hooks/useCreateProduct';
 
 const categories = [
   'jeans',

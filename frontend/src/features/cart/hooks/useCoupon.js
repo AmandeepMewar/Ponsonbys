@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getCoupon } from '../../services/apiCoupon';
+import { getCoupon } from '../../../services/apiCoupon';
 
 export function useCoupon() {
   const { data: coupon, isPending: isLoading } = useQuery({

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import SignUpForm from '../features/authentication/SignUpForm';
+import SignUpForm from '../features/authentication/components/SignUpForm';
 export default function SignUp() {
   return (
     <div className='flex flex-col items-center py-12 sm:px-6 lg:px-8'>

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { removeFromCart as removeFromCartApi } from '../../services/apiCart';
+import { removeFromCart as removeFromCartApi } from '../../../services/apiCart';
 
 export function useRemoveFromCart() {
   const queryClient = useQueryClient();

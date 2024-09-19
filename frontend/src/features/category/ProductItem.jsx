@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../ui/Button';
 import LoaderMini from '../../ui/LoaderMini';
 import { formatCurrency } from '../../utils/helpers';
-import { useProfile } from '../authentication/useProfile';
-import { useAddToCart } from '../cart/useAddToCart';
+import { useProfile } from '../authentication/hooks/useProfile';
+import { useAddToCart } from '../cart/hooks/useAddToCart';
 
 export default function ProductItem({ product }) {
   const navigate = useNavigate();

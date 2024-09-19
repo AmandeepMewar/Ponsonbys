@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { checkoutSuccess as checkoutSuccessApi } from '../../services/apiStripe';
+import { checkoutSuccess as checkoutSuccessApi } from '../../../services/apiStripe';
 
 export function useCheckoutSuccess() {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export function useCheckoutSuccess() {
   } = useMutation({
     mutationFn: checkoutSuccessApi,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['cart'] });
+      queryClient.invalidateQueries(['cart']);
     },
     onError: (err) => {
       toast.error(err.message);

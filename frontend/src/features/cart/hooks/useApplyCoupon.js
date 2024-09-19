@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { validateCoupon } from '../../services/apiCoupon';
+import { validateCoupon } from '../../../services/apiCoupon';
 
 export function useApplyCoupon() {
   const queryClient = useQueryClient();
@@ -12,7 +12,7 @@ export function useApplyCoupon() {
     mutationFn: validateCoupon,
     onSuccess: (data) => {
       queryClient.setQueryData(['coupon'], data.result);
-      toast.success('Coupon applied');
+      toast.success('Coupon applied successfully.');
     },
     onError: (err) => {
       toast.error(err.message);

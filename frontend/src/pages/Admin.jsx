@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useProfile } from '../features/authentication/useProfile';
-import Dashboard from '../features/dashboard/Dashboard';
+import { useProfile } from '../features/authentication/hooks/useProfile';
+import Dashboard from '../features/dashboard/components/Dashboard';
 export default function Admin() {
   const navigate = useNavigate();
   const { user } = useProfile();

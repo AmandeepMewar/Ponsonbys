@@ -1,6 +1,6 @@
 import { Minus, Plus } from 'lucide-react';
-import Button from '../../ui/Button';
-import { useUpdateQuantity } from '../cart/useUpdateQuantity';
+import Button from '../../../ui/Button';
+import { useUpdateQuantity } from '../hooks/useUpdateQuantity';
 
 export default function UpdateItemQuantity({ quantity, productId }) {
   const { updateQuantity, isLoading } = useUpdateQuantity();

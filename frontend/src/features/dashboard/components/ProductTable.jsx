@@ -1,11 +1,11 @@
 import { Star, Trash } from 'lucide-react';
-import Button from '../../ui/Button';
-import Loader from '../../ui/Loader';
-import NotFound from '../../ui/NotFound';
-import Table from '../../ui/Table';
-import { useDeleteProduct } from './useDeleteProduct';
-import { useProducts } from './useProducts';
-import { useToggleFeaturedProduct } from './useToggleFeaturedProduct';
+import Button from '../../../ui/Button';
+import Loader from '../../../ui/Loader';
+import NotFound from '../../../ui/NotFound';
+import Table from '../../../ui/Table';
+import { useDeleteProduct } from '../hooks/useDeleteProduct';
+import { useProducts } from '../hooks/useProducts';
+import { useToggleFeaturedProduct } from '../hooks/useToggleFeaturedProduct';
 
 const headers = ['Product', 'Price', 'Category', 'Featured', 'Actions'];
 

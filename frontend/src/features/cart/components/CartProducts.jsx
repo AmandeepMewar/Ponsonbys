@@ -1,16 +1,16 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-import Button from '../../ui/Button';
-import Loader from '../../ui/Loader';
-import NotFound from '../../ui/NotFound';
-import { useProfile } from '../authentication/useProfile';
+import Button from '../../../ui/Button';
+import Loader from '../../../ui/Loader';
+import NotFound from '../../../ui/NotFound';
+import { useProfile } from '../../authentication/hooks/useProfile';
+import { useGetCartProducts } from '../hooks/useGetCartProducts';
+import { useRemoveFromCart } from '../hooks/useRemoveFromCart';
 import CartItem from './CartItem';
 import CouponCard from './CouponCard';
 import OrderSummary from './OrderSummary';
 import Recommendations from './Recommendations';
-import { useGetCartProducts } from './useGetCartProducts';
-import { useRemoveFromCart } from './useRemoveFromCart';
 
 export default function CartProducts() {
   const { cart = [], isLoadingCart } = useGetCartProducts();

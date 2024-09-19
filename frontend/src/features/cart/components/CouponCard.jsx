@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import Button from '../../ui/Button';
-import { useApplyCoupon } from './useApplyCoupon';
-import { useCoupon } from './useCoupon';
+import Button from '../../../ui/Button';
+import { useApplyCoupon } from '../hooks/useApplyCoupon';
+import { useCoupon } from '../hooks/useCoupon';
 
 export default function CouponCard({ isCouponApplied, setIsCouponApplied }) {
   const { coupon } = useCoupon();

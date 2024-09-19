@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 import { MoveRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Button from '../../ui/Button';
-import LoaderMini from '../../ui/LoaderMini';
-import { calculateTotals, formatCurrency } from '../../utils/helpers';
-import { useCoupon } from './useCoupon';
-import { useCreateSession } from './useCreateSession';
-import { useGetCartProducts } from './useGetCartProducts';
+import Button from '../../../ui/Button';
+import LoaderMini from '../../../ui/LoaderMini';
+import { calculateTotals, formatCurrency } from '../../../utils/helpers';
+import { useCoupon } from '../hooks/useCoupon';
+import { useCreateSession } from '../hooks/useCreateSession';
+import { useGetCartProducts } from '../hooks/useGetCartProducts';
 
 export default function OrderSummary({ isCouponApplied }) {
   const { cart } = useGetCartProducts();

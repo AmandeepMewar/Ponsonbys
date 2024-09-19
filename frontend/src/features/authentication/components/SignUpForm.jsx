@@ -1,13 +1,13 @@
 import { Eye, EyeOff, Lock, Mail, User, UserPlus } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import AuthLink from '../../ui/AuthLink';
-import Button from '../../ui/Button';
-import FormInput from '../../ui/FormInput';
-import Input from '../../ui/Input';
-import InputIcon from '../../ui/InputIcon';
-import LoaderMini from '../../ui/LoaderMini';
-import { useSignup } from './useSignup';
+import AuthLink from '../../../ui/AuthLink';
+import Button from '../../../ui/Button';
+import FormInput from '../../../ui/FormInput';
+import Input from '../../../ui/Input';
+import InputIcon from '../../../ui/InputIcon';
+import LoaderMini from '../../../ui/LoaderMini';
+import { useSignup } from '../hooks/useSignup';
 
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);

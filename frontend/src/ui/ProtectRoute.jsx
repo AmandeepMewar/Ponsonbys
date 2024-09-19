@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useProfile } from '../features/authentication/useProfile';
+import { useProfile } from '../features/authentication/hooks/useProfile';
 import Loader from './Loader';
 
 export default function ProtectRoute() {

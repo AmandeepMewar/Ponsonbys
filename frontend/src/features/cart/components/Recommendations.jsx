@@ -1,5 +1,5 @@
-import ProductItem from '../category/ProductItem';
-import { useRecommendations } from './useRecommendations';
+import ProductItem from '../../category/ProductItem';
+import { useRecommendations } from '../hooks/useRecommendations';
 
 export default function Recommendations() {
   const { products: recommendations = [] } = useRecommendations();

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import LoginForm from '../features/authentication/LoginForm';
+import LoginForm from '../features/authentication/components/LoginForm';
 export default function Login() {
   return (
     <div className='flex flex-col items-center py-12 sm:px-6 lg:px-8'>

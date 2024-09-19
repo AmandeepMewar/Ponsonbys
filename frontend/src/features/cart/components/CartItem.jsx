@@ -1,9 +1,9 @@
 import { Trash } from 'lucide-react';
-import Button from '../../ui/Button';
-import LoaderMini from '../../ui/LoaderMini';
-import { formatCurrency } from '../../utils/helpers';
+import Button from '../../../ui/Button';
+import LoaderMini from '../../../ui/LoaderMini';
+import { formatCurrency } from '../../../utils/helpers';
+import { useRemoveFromCart } from '../hooks/useRemoveFromCart';
 import UpdateItemQuantity from './UpdateItemQuantity';
-import { useRemoveFromCart } from './useRemoveFromCart';
 
 function CartItem({ product }) {
   const { name, image, quantity, price, _id: productId } = product;

@@ -7,8 +7,8 @@ import {
   UserPlus,
 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
-import { useLogout } from '../features/authentication/useLogout';
-import { useProfile } from '../features/authentication/useProfile';
+import { useLogout } from '../features/authentication/hooks/useLogout';
+import { useProfile } from '../features/authentication/hooks/useProfile';
 import Button from './Button';
 import LoaderMini from './LoaderMini';
 

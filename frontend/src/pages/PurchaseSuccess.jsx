@@ -2,8 +2,8 @@ import { ArrowRight, CheckCircle, HandHeart } from 'lucide-react';
 import { useEffect } from 'react';
 import Confetti from 'react-confetti';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { useCheckoutSuccess } from '../features/cart/useCheckoutSuccess';
-import { useRemoveFromCart } from '../features/cart/useRemoveFromCart';
+import { useCheckoutSuccess } from '../features/cart/hooks/useCheckoutSuccess';
+import { useRemoveFromCart } from '../features/cart/hooks/useRemoveFromCart';
 import Button from '../ui/Button';
 import Loader from '../ui/Loader';
 
