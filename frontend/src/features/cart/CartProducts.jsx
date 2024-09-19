@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+
+import Button from '../../ui/Button';
 import Loader from '../../ui/Loader';
 import NotFound from '../../ui/NotFound';
 import { useProfile } from '../authentication/useProfile';
@@ -8,12 +10,16 @@ import CouponCard from './CouponCard';
 import OrderSummary from './OrderSummary';
 import Recommendations from './Recommendations';
 import { useGetCartProducts } from './useGetCartProducts';
+import { useRemoveFromCart } from './useRemoveFromCart';
 
 export default function CartProducts() {
-  const { cart = [], isLoading } = useGetCartProducts();
+  const { cart = [], isLoadingCart } = useGetCartProducts();
   const { user } = useProfile();
+  const { removeFromCart, isLoadingRemove } = useRemoveFromCart();
 
   const [isCouponApplied, setIsCouponApplied] = useState(false);
+
+  const isLoading = isLoadingCart || isLoadingRemove;
 
   if (isLoading) return <Loader />;
 
@@ -33,10 +39,17 @@ export default function CartProducts() {
             Nothing here yet. Start shopping to add items to your cart!
           </NotFound>
         ) : (
-          <div className='space-y-6'>
+          <div className='flex flex-col items-center space-y-6'>
             {cart.map((product) => (
               <CartItem key={product._id} product={product} />
             ))}
+            <Button
+              className='flex w-1/2 justify-center rounded-md border border-transparent bg-yellow-700 px-4 py-2 text-sm font-medium text-yellow-50 shadow-sm transition duration-150 ease-in-out hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+              onClick={() => removeFromCart()}
+              disabled={isLoading}
+            >
+              Clear Cart
+            </Button>
           </div>
         )}
         {cart.length > 0 && <Recommendations />}

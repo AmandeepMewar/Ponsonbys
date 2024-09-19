@@ -13,7 +13,7 @@ function CartItem({ product }) {
   const productPrice = price * quantity;
 
   return (
-    <div className='rounded-lg bg-yellow-100 px-5 py-3 shadow-lg sm:flex sm:items-center sm:justify-between'>
+    <div className='w-full rounded-lg bg-yellow-100 px-5 py-3 shadow-lg sm:flex sm:items-center sm:justify-between'>
       <div className='flex items-center gap-8'>
         <img
           src={image}
