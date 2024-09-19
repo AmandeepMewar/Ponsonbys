@@ -23,6 +23,7 @@ export async function createCheckoutSession(req, res) {
           },
           unit_amount: amount,
         },
+        quantity: product.quantity || 1,
       };
     });
 
@@ -47,7 +48,7 @@ export async function createCheckoutSession(req, res) {
       success_url: `${process.env.CLIENT_URL}/purchase-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.CLIENT_URL}/purchase-cancel`,
       discounts: coupon
-        ? [{ coupon: await createStripeCoupon[coupon.discountPercentage] }]
+        ? [{ coupon: await createStripeCoupon(coupon.discountPercentage) }]
         : [],
       metadata: {
         userId: req.user._id.toString(),
@@ -68,12 +69,11 @@ export async function createCheckoutSession(req, res) {
 
     res.status(200).json({
       status: 'success',
-      id: session.id,
-      totalAmount: totalAmount / 100,
+      result: { id: session.id, totalAmount: totalAmount / 100 },
     });
   } catch (error) {
     res.status(500).json({
-      status: 'success',
+      status: 'error',
       message: 'Error processing checkout',
       error: error.message,
     });
@@ -90,10 +90,12 @@ async function createStripeCoupon(discountPercentage) {
 }
 
 async function createNewCoupon(userId) {
+  await Coupon.findOneAndDelete({ userId });
+
   const newCoupon = new Coupon({
     code: 'GIFT' + Math.random().toString(36).substring(2, 8).toUpperCase(),
     discountPercentage: 10,
-    expirationDate: new Date(Date.now + 30 * 24 * 60 * 60 * 1000), // 30 days
+    expirationDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
     userId: userId,
   });
 
