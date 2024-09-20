@@ -25,3 +25,13 @@ export function calculateTotals(cart, coupon, isCouponApplied) {
 
   return { total, subTotal };
 }
+
+export function formatDate(date) {
+  let formattedDate = new Date(date);
+  formattedDate = formattedDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+  return formattedDate;
+}
