@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   CartesianGrid,
   Label,
@@ -12,10 +13,14 @@ import {
 import { formatCurrency, formatDate } from '../../../utils/helpers';
 
 export default function AnalyticsChart({ dailySalesData }) {
-  dailySalesData = dailySalesData.map((sales) => {
-    sales.date = formatDate(sales.date);
-    return sales;
-  });
+  dailySalesData = useMemo(
+    () =>
+      dailySalesData.map((sales) => {
+        sales.date = formatDate(sales.date);
+        return sales;
+      }),
+    [dailySalesData]
+  );
 
   return (
     <ResponsiveContainer width='100%' height={400}>
