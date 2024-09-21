@@ -38,3 +38,12 @@
     transform: rotate(360deg);
   }
 }
+
+.slick-slide > div {
+  margin: 0 15px;
+}
+
+.slick-next:before,
+.slick-prev:before {
+  color: #854d0e;
+}

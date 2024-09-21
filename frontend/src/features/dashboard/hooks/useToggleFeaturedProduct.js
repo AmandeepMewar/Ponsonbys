@@ -8,7 +8,9 @@ export function useToggleFeaturedProduct() {
     mutationFn: toggleFeaturedProductApi,
     onSuccess: (data) => {
       queryClient.invalidateQueries(['products']);
-      toast.success(`${data.name} is featured now!`);
+      toast.success(
+        `${data.name} is now ${data.isFeatured ? 'featured' : 'unfeatured'}!`
+      );
     },
     onError: (err) => {
       toast.error(err.message);

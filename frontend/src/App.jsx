@@ -20,6 +20,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       stateTime: 0,
+      retry: 1,
     },
   },
 });

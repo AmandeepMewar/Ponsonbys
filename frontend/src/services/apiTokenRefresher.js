@@ -1,3 +1,5 @@
+const { fetch } = window;
+
 async function refreshAccessToken() {
   const response = await fetch('/api/auth/refresh-tokens', {
     method: 'POST',
