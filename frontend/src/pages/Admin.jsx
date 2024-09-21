@@ -13,9 +13,9 @@ export default function Admin() {
     [user, navigate]
   );
   return (
-    <div className='relative min-h-screen overflow-hidden'>
+    <div className='relative min-h-screen overflow-auto'>
       <Dashboard />
-      <main className='flex justify-center'>
+      <main className='flex w-full justify-center'>
         <Outlet />
       </main>
     </div>

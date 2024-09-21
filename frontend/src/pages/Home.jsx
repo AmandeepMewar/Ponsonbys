@@ -1,3 +1,4 @@
+import FeaturedProducts from '../features/category/FeaturedProducts';
 import CategoryItem from '../ui/CategoryItem';
 
 const categories = [
@@ -30,6 +31,8 @@ export default function Home() {
             <CategoryItem category={category} key={category.name} />
           ))}
         </div>
+
+        <FeaturedProducts />
       </div>
     </div>
   );

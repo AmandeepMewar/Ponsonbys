@@ -1,6 +1,6 @@
 export default function FormInput({ label, htmlFor, error, children }) {
   return (
-    <div>
+    <div className='w-full'>
       <label
         htmlFor={htmlFor}
         className='block text-sm font-medium text-yellow-800'

@@ -73,7 +73,7 @@ export default function ProductItem({ product }) {
           <p className='font-semibold text-orange-600'>{price}</p>
         </div>
 
-        <p className='text-xs transition-all duration-100'>
+        <p className='text-xs text-yellow-700 transition-all duration-100'>
           {isHover ? product.description : description}
         </p>
       </div>

@@ -9,7 +9,7 @@ export default function AuthLink({ message, linkText }) {
       {message}
       <Link
         to={location}
-        className='font-semibold text-orange-600 hover:text-orange-500'
+        className='block font-semibold text-orange-600 hover:text-orange-500 md:inline'
       >
         {linkText} <ArrowRight className='inline h-4 w-4' />
       </Link>

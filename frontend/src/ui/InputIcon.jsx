@@ -8,7 +8,7 @@ export default function InputIcon({ Icon, className, onClick }) {
       }
     >
       <Icon
-        className='h-5 w-5 text-yellow-800'
+        className='h-4 w-4 text-yellow-800 md:h-5 md:w-5'
         aria-hidden='true'
         onClick={onClick}
       />

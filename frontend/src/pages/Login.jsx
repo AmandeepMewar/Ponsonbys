@@ -16,7 +16,7 @@ export default function Login() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className='flex w-full flex-col justify-center rounded-md bg-yellow-100 px-16 py-12 sm:w-2/3 lg:w-2/5'
+        className='flex w-11/12 flex-col justify-center rounded-md bg-yellow-100 px-8 py-12 sm:w-2/3 lg:w-2/5 lg:px-16'
       >
         <LoginForm />
       </motion.div>

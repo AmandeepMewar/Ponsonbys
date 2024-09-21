@@ -27,7 +27,7 @@ export default function CreateProductForm() {
   }
 
   return (
-    <div className='flex w-full flex-col justify-center rounded-md bg-yellow-100 px-16 py-12 sm:w-2/3 lg:w-2/5'>
+    <div className='mx-4 flex w-full flex-col justify-center rounded-md bg-yellow-100 px-8 py-12 sm:w-2/3 lg:w-2/5 lg:px-16'>
       <form className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           label='Product Name'
@@ -56,7 +56,7 @@ export default function CreateProductForm() {
             rows='3'
             name='description'
             disabled={isLoading}
-            className='block w-full rounded-md border border-yellow-800 bg-yellow-50 px-10 py-2 placeholder-yellow-700 shadow-sm focus:border-orange-600 focus:outline-none focus:ring-yellow-900 sm:text-sm'
+            className='block w-full rounded-md border border-yellow-800 bg-yellow-50 px-10 py-2 text-xs placeholder-yellow-700 shadow-sm focus:border-orange-600 focus:outline-none focus:ring-yellow-900 sm:text-sm'
             {...register('description', {
               required: 'This field is required',
             })}
@@ -83,7 +83,7 @@ export default function CreateProductForm() {
             id='category'
             name='category'
             disabled={isLoading}
-            className='mt-1 block w-full rounded-md border border-yellow-100 bg-orange-600 px-3 py-2 text-yellow-50 shadow-sm focus:border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-100'
+            className='mt-1 block w-full rounded-md border border-yellow-100 bg-orange-600 px-3 py-2 text-xs text-yellow-50 shadow-sm focus:border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-100 sm:text-sm'
             {...register('category', { required: 'This field is required' })}
           >
             <option value=''>Select a category</option>

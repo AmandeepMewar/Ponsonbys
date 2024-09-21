@@ -16,7 +16,7 @@ export default function AnalyticsTab() {
     <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
       <Stats analyticsData={analyticsData} />
       <motion.div
-        className='rounded-lg bg-yellow-100 p-6 shadow-lg'
+        className='hidden rounded-lg bg-yellow-100 shadow-lg lg:block lg:p-6'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.25 }}
