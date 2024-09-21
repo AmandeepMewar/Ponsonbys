@@ -1,20 +1,30 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { lazy, Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import AnalyticsTab from './features/dashboard/components/AnalyticsTab';
-import CreateProductForm from './features/dashboard/components/CreateProductForm';
-import ProductList from './features/dashboard/components/ProductList';
-import Admin from './pages/Admin';
-import Cart from './pages/Cart';
-import Category from './pages/Category';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import PurchaseCancel from './pages/PurchaseCancel';
-import PurchaseSuccess from './pages/PurchaseSuccess';
-import SignUp from './pages/SignUp';
-import AppLayout from './ui/AppLayout';
+
+import Loader from './ui/Loader';
 import ProtectRoute from './ui/ProtectRoute';
+
+const AppLayout = lazy(() => import('./ui/AppLayout'));
+const Home = lazy(() => import('./pages/Home'));
+const Category = lazy(() => import('./pages/Category'));
+const Login = lazy(() => import('./pages/Login'));
+const SignUp = lazy(() => import('./pages/SignUp'));
+const PurchaseCancel = lazy(() => import('./pages/PurchaseCancel'));
+const PurchaseSuccess = lazy(() => import('./pages/PurchaseSuccess'));
+const Cart = lazy(() => import('./pages/Cart'));
+const Admin = lazy(() => import('./pages/Admin'));
+const ProductList = lazy(
+  () => import('./features/dashboard/components/ProductList')
+);
+const AnalyticsTab = lazy(
+  () => import('./features/dashboard/components/AnalyticsTab')
+);
+const CreateProductForm = lazy(
+  () => import('./features/dashboard/components/CreateProductForm')
+);
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,35 +34,41 @@ const queryClient = new QueryClient({
     },
   },
 });
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
-        <Routes>
-          <Route element={<AppLayout />}>
-            <Route index element={<Navigate replace to='home' />} />
-            <Route path='home' element={<Home />} />
-            <Route path='category/:category' element={<Category />} />
-            <Route element={<ProtectRoute />}>
-              <Route path='cart' element={<Cart />} />
-              <Route path='/purchase-success' element={<PurchaseSuccess />} />
-              <Route path='/purchase-cancel' element={<PurchaseCancel />} />
-              <Route path='dashboard' element={<Admin />}>
-                <Route
-                  index
-                  element={<Navigate replace to='create-product' />}
-                />
-                <Route path='create-product' element={<CreateProductForm />} />
-                <Route path='products' element={<ProductList />} />
-                <Route path='analytics' element={<AnalyticsTab />} />
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route index element={<Navigate replace to='home' />} />
+              <Route path='home' element={<Home />} />
+              <Route path='category/:category' element={<Category />} />
+              <Route element={<ProtectRoute />}>
+                <Route path='cart' element={<Cart />} />
+                <Route path='/purchase-success' element={<PurchaseSuccess />} />
+                <Route path='/purchase-cancel' element={<PurchaseCancel />} />
+                <Route path='dashboard' element={<Admin />}>
+                  <Route
+                    index
+                    element={<Navigate replace to='create-product' />}
+                  />
+                  <Route
+                    path='create-product'
+                    element={<CreateProductForm />}
+                  />
+                  <Route path='products' element={<ProductList />} />
+                  <Route path='analytics' element={<AnalyticsTab />} />
+                </Route>
               </Route>
-            </Route>
 
-            <Route path='login' element={<Login />} />
-            <Route path='signup' element={<SignUp />} />
-          </Route>
-        </Routes>
+              <Route path='login' element={<Login />} />
+              <Route path='signup' element={<SignUp />} />
+            </Route>
+          </Routes>
+        </Suspense>
       </BrowserRouter>
       <Toaster
         position='top-center'
