@@ -133,7 +133,7 @@ export async function logout(req, res) {
   }
 }
 
-export async function refreshTokens(req, res) {
+export async function refreshAccessToken(req, res) {
   try {
     const refreshToken = req.cookies.refreshToken;
 
