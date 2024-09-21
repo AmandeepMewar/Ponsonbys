@@ -31,7 +31,7 @@ export default function LoginForm() {
         htmlFor='email'
         error={errors?.email?.message}
       >
-        <InputIcon Icon={Mail} />
+        <InputIcon icon={Mail} />
         <Input
           type='email'
           id='email'
@@ -52,7 +52,7 @@ export default function LoginForm() {
         htmlFor='password'
         error={errors.password?.message}
       >
-        <InputIcon Icon={Lock} />
+        <InputIcon icon={Lock} />
         <Input
           type={showPassword ? 'text' : 'password'}
           id='password'
@@ -61,7 +61,7 @@ export default function LoginForm() {
           {...register('password', { required: 'This field is required' })}
         />
         <InputIcon
-          Icon={showPassword ? Eye : EyeOff}
+          icon={showPassword ? Eye : EyeOff}
           className='absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3'
           onClick={() => setShowPassword((s) => !s)}
         />

@@ -34,7 +34,7 @@ export default function CreateProductForm() {
           htmlFor='productName'
           error={errors?.productName?.message}
         >
-          <InputIcon Icon={Box} />
+          <InputIcon icon={Box} />
           <Input
             type='text'
             placeholder='e.g., Nike Air Max'
@@ -50,7 +50,7 @@ export default function CreateProductForm() {
           htmlFor='description'
           error={errors?.description?.message}
         >
-          <InputIcon Icon={Text} />
+          <InputIcon icon={Text} />
           <textarea
             placeholder='e.g., High-quality running shoes'
             rows='3'
@@ -63,7 +63,7 @@ export default function CreateProductForm() {
           />
         </FormInput>
         <FormInput label='Price' htmlFor='price' error={errors?.price?.message}>
-          <InputIcon Icon={IndianRupee} />
+          <InputIcon icon={IndianRupee} />
           <Input
             type='number'
             id='price'
@@ -96,7 +96,7 @@ export default function CreateProductForm() {
         </FormInput>
 
         <FormInput label='Image' htmlFor='image' error={errors?.image?.message}>
-          <InputIcon Icon={Upload} />
+          <InputIcon icon={Upload} />
           <Input
             type='file'
             id='image'

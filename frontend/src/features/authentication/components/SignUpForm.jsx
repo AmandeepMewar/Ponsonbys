@@ -33,7 +33,7 @@ export default function SignUpForm() {
         htmlFor='fullName'
         error={errors?.fullName?.message}
       >
-        <InputIcon Icon={User} />
+        <InputIcon icon={User} />
         <Input
           id='fullName'
           type='text'
@@ -48,7 +48,7 @@ export default function SignUpForm() {
         htmlFor='email'
         error={errors?.email?.message}
       >
-        <InputIcon Icon={Mail} />
+        <InputIcon icon={Mail} />
         <Input
           id='email'
           type='email'
@@ -69,7 +69,7 @@ export default function SignUpForm() {
         htmlFor='password'
         error={errors?.password?.message}
       >
-        <InputIcon Icon={Lock} />
+        <InputIcon icon={Lock} />
         <Input
           id='password'
           type={showPassword ? 'text' : 'password'}
@@ -85,7 +85,7 @@ export default function SignUpForm() {
         />
 
         <InputIcon
-          Icon={showPassword ? Eye : EyeOff}
+          icon={showPassword ? Eye : EyeOff}
           className='absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3'
           onClick={() => setShowPassword((s) => !s)}
         />
@@ -96,7 +96,7 @@ export default function SignUpForm() {
         htmlFor='confirmPassword'
         error={errors?.confirmPassword?.message}
       >
-        <InputIcon Icon={Lock} />
+        <InputIcon icon={Lock} />
         <Input
           id='confirmPassword'
           type='password'

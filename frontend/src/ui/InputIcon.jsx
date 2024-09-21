@@ -1,4 +1,4 @@
-export default function InputIcon({ Icon, className, onClick }) {
+export default function InputIcon({ icon: Icon, className, onClick }) {
   return (
     <div
       className={
