@@ -67,3 +67,13 @@ export async function getRecommendedProducts() {
 
   return data.result;
 }
+
+export async function getFeaturedProducts() {
+  const response = await fetch('/api/products/featured/');
+
+  const data = await response.json();
+
+  if (!response.ok) throw new Error(data.message);
+
+  return data.result;
+}
