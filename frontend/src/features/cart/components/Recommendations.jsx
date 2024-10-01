@@ -1,8 +1,12 @@
+import Loader from '../../../ui/Loader';
 import ProductItem from '../../category/ProductItem';
 import { useRecommendations } from '../hooks/useRecommendations';
 
 export default function Recommendations() {
-  const { products: recommendations = [] } = useRecommendations();
+  const { products: recommendations = [], isLoading } = useRecommendations();
+
+  if (isLoading) return <Loader />;
+
   return (
     <div className='mt-10'>
       <h3 className='text-2xl font-semibold text-yellow-800'>

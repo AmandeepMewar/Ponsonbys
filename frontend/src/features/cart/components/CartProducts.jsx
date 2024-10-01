@@ -13,9 +13,9 @@ import OrderSummary from './OrderSummary';
 import Recommendations from './Recommendations';
 
 export default function CartProducts() {
-  const { cart = [], isLoadingCart } = useGetCartProducts();
+  const { cart = [], isLoading: isLoadingCart } = useGetCartProducts();
   const { user } = useProfile();
-  const { removeFromCart, isLoadingRemove } = useRemoveFromCart();
+  const { removeFromCart, isLoading: isLoadingRemove } = useRemoveFromCart();
 
   const [isCouponApplied, setIsCouponApplied] = useState(false);
 

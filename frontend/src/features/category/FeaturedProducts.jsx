@@ -1,9 +1,12 @@
 import Slider from 'react-slick';
+import Loader from '../../ui/Loader';
 import ProductItem from './ProductItem';
 import { useFeaturedProducts } from './useFeaturedProducts';
 
 export default function FeaturedProducts() {
-  const { data: products = [] } = useFeaturedProducts();
+  const { data: products = [], isLoading } = useFeaturedProducts();
+
+  if (isLoading) return <Loader />;
 
   if (products.length < 3) return null;
 
